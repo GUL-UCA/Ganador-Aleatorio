@@ -8,6 +8,15 @@ def seleccionarGanador(columna):
     return numeroGanador
 
 
+def guardarEnArchivo(universitario, ganador):
+    file = open("Ganador.txt", "w")
+    file.write(universitario["Nombres y Apellidos"][ganador] + " " +
+               universitario["Carrera universitaria"][ganador] + " " +
+               universitario["Número telefonico"][ganador])
+    file.close()
+    return
+
+
 with open("Fiesta de Bienvenida GUL-UCA.csv") as csvDataFile:
     listaAsistentes = defaultdict(list)  # Cada valor en cada columna es agregado a una lista
 
@@ -18,8 +27,4 @@ with open("Fiesta de Bienvenida GUL-UCA.csv") as csvDataFile:
 
     numeroGanador = seleccionarGanador(listaAsistentes['Nombres y Apellidos'])
 
-    file = open("Ganador.txt", "w")
-    file.write(listaAsistentes["Nombres y Apellidos"][numeroGanador] + " " +
-               listaAsistentes["Carrera universitaria"][numeroGanador] + " " +
-               listaAsistentes["Número telefonico"][numeroGanador])
-    file.close()
+    guardarEnArchivo(listaAsistentes, numeroGanador)
